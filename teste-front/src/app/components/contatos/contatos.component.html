@@ -1,0 +1,131 @@
+<h3 class="text-center text-white">Lista de contatos</h3>
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="progress mt-4" *ngIf="loader"></div>
+</div>
+
+<div class="row d-flex justify-content-center mt-4 " *ngIf="!loader">
+    <div class="col-md-6 col-12 lista">
+
+  <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#novocontato">Criar novo</button>
+          <div class="card-shadow row mt-4 mb-2" *ngFor="let oD of objDados">
+            <div class="col">
+              <small class="text-uppercase fw-bold">Nome</small> <br>
+              {{oD.nome}}</div>
+            <div class="col">
+              <small class="text-uppercase fw-bold">Telefone</small> <br>
+              {{oD.telefone}}</div>
+            <div class="col">
+              <small class="text-uppercase fw-bold">Whatsapp</small> <br>
+              {{oD.whatsapp}}</div>
+            <div class="col">
+              <small class="text-uppercase fw-bold">E-mail</small> <br>
+              {{oD.email}}</div>
+            <div class="col-1"><img src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg" type="button"
+              data-bs-toggle="modal" data-bs-target="#editar" width="30" (click)="editar(oD)"></div>
+            <div class="col-1"><img src="../../../assets/icons/delete_FILL0_wght400_GRAD0_opsz48.svg"
+               (click)="deletar(oD.id)" type="button" width="30"></div>
+      </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal novo-->
+<div class="modal fade" id="novocontato" tabindex="-1" aria-labelledby="novocontatoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="novocontatoLabel">Novo contato</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="nomeinput" [(ngModel)]="novo_nome">
+              <label for="nomeinput">Nome</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="email" class="form-control" id="emailinput" [(ngModel)]="novo_email">
+              <label for="emailinput">Email</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-2 mt-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="telefoneinput" [(ngModel)]="novo_telefone" maxlength="12">
+              <label for="telefoneinput">Telefone</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="whatsinput" [(ngModel)]="novo_whatsapp"  maxlength="12">
+              <label for="whatsinput">Whatsapp</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="novoContato()"  data-bs-dismiss="modal">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal editar -->
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editarLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editarLabel">Editar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+        <div class="modal-body">
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="nomeinput" [(ngModel)]="nome">
+              <label for="nomeinput">Nome</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="email" class="form-control" id="emailinput"  [(ngModel)]="email">
+              <label for="emailinput">Email</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-2 mt-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="telefoneinput"  [(ngModel)]="telefone"  maxlength="12">
+              <label for="telefoneinput">Telefone</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="whatsinput"  [(ngModel)]="whatsapp"  maxlength="12">
+              <label for="whatsinput">Whatsapp</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="salvarEdicao()"  data-bs-dismiss="modal">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
